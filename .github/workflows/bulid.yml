@@ -27,7 +27,7 @@ jobs:
         run: npm install
 
       - name: Build Electron App
-        run: npm run dist
+        run: npm run build
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
