@@ -63,7 +63,6 @@ function createWindow() {
     win.loadURL(VITE_DEV_SERVER_URL);
   } else {
     // 否则，加载构建后的 index.html 文件
-    // win.loadFile('dist/index.html')
     win.loadFile(path.join(RENDERER_DIST, "index.html"));
   }
 }

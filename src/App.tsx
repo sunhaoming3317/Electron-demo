@@ -1,14 +1,18 @@
 import { Suspense } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import routes from "./routes";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallback from "./pages/error-fallback";
 
 function App() {
-  const customRoutes = createBrowserRouter(routes);
+  const customRoutes = createHashRouter(routes);
 
   return (
-    <Suspense>
-      <RouterProvider router={customRoutes} />
-    </Suspense>
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <Suspense>
+        <RouterProvider router={customRoutes} />
+      </Suspense>
+    </ErrorBoundary>
   );
 }
 

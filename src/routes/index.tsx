@@ -13,7 +13,9 @@ const ShowMessageBox = lazy(() => import("@/pages/dialog/show-message-box"));
 
 const ShowErrorBox = lazy(() => import("@/pages/dialog/show-error-box"));
 
-const ShowCertificateTrustDialog = lazy(() => import("@/pages/dialog/show-certificate-trust-dialog"));
+const ShowCertificateTrustDialog = lazy(
+  () => import("@/pages/dialog/show-certificate-trust-dialog"),
+);
 
 const Notification = lazy(() => import("@/pages/notification"));
 
@@ -46,9 +48,10 @@ const routes: RouteObject[] = [
       { path: "/clipboard/demo", element: <ClipboardDemo /> },
       { path: "/device-access", element: <DeviceAccess /> },
       { path: "/device-access/demo", element: <DeviceAccessDemo /> },
-      { path: "/session", element: <SessionDemo />}
+      { path: "/session", element: <SessionDemo /> },
     ],
   },
+  { path: "*", element: <div>404</div> },
 ];
 
 export default routes;
