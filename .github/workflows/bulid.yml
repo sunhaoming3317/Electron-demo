@@ -53,6 +53,10 @@ jobs:
         id: create_release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ env.VERSION }}
+          name: v${{ env.VERSION }}
+          draft: false
+          prerelease: false
           files: "release/**"
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
