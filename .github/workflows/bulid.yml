@@ -62,3 +62,21 @@ jobs:
             release/*.exe
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ELI-demo-mac
+          path: release/*-universal.dmg
+          if-no-files-found: ignore
+  
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ELI-demo-win
+          path: release/*Setup*.exe
+          if-no-files-found: ignore
+  
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ELI-demo-linux
+          path: release/*.AppImage
+          if-no-files-found: ignore
