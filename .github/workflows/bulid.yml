@@ -49,13 +49,6 @@ jobs:
           name: ${{ matrix.os }}
           path: release
 
-      - name: get version
-        id: get_chrome_extension_version
-        run: |
-          VERSION=$(node -p "require('./package.json').version" 2>/dev/null || echo "v0.0.1")
-          echo "VERSION=${VERSION}" >> $GITHUB_ENV
-          echo "New version:${VERSION}"
-
       - name: release
         id: create_release
         uses: softprops/action-gh-release@v2
@@ -64,6 +57,8 @@ jobs:
           name: v${{ env.VERSION }}
           draft: false
           prerelease: false
-          files: "release/**"
+          files: |
+            release/*.7z
+            release/*.exe
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
