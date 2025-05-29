@@ -2,8 +2,8 @@ name: Build
 
 on: 
   push:
-    tags:
-      - 'v*'
+    branches:
+      main
 
 jobs:
   release:
@@ -49,10 +49,19 @@ jobs:
           name: ${{ matrix.os }}
           path: release
 
+      - name: get version
+        id: get_chrome_extension_version
+        run: |
+          VERSION=$(node -p "require('./package.json').version" 2>/dev/null || echo "v0.0.1")
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
+          echo "New version:${VERSION}"
+
       - name: release
         id: create_release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ env.VERSION }}
+          name: v${{ env.VERSION }}
           draft: false
           prerelease: false
           files: "release/**"
