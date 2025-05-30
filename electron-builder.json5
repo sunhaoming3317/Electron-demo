@@ -5,7 +5,7 @@
   asar: true,
   productName: "eli-demo",
   directories: {
-    output: "release/${version}",
+    output: "release/",
   },
   files: ["dist", "dist-electron"],
   mac: {
